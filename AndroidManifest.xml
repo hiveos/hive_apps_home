@@ -8,6 +8,9 @@
         android:minSdkVersion="19"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -16,7 +19,8 @@
         <activity
             android:name="hive.apps.home.MainActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
+            android:theme="@style/HomescreenTheme" >
+<!--             android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" > -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +31,11 @@
         <activity
             android:name="hive.apps.home.AppDrawer"
             android:label="Apps"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
+        </activity>
+        <activity
+            android:name="hive.apps.home.TimetableListView"
+            android:label="Timetable"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
         </activity>
     </application>
