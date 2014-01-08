@@ -55,6 +55,10 @@ public class MainActivity extends FragmentActivity {
 		return true;
 	}
 
+	@Override
+	public void onBackPressed() {
+	}
+
 	public void applyWallpaper() {
 		final WallpaperManager wallpaperManager = WallpaperManager
 				.getInstance(this);
