@@ -1,0 +1,215 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="#d5d5d5" >
+
+    <RelativeLayout
+        android:id="@+id/app_drawer_blurred_avatar_holder"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp" >
+
+        <ImageView
+            android:id="@+id/app_drawer_avatar_blurred"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_default_4"
+            android:tint="#50000000" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:background="#20000000"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp" >
+
+        <ImageView
+            android:id="@+id/app_drawer_avatar"
+            android:layout_width="186dp"
+            android:layout_height="186dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:shadowColor="#80000000"
+            android:shadowRadius="3"
+            android:src="@drawable/avatar_default_4" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/app_drawer_avatar"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/app_drawer_avatar"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text="NAME: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/app_drawer_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text="CLASS: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/app_drawer_user_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text="ID: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/app_drawer_user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowRadius="3"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/app_drawer_blurred_avatar_holder"
+        android:gravity="center_horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/app_drawer_books"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_launcher_books" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Books"
+                android:textColor="#7a7a7a" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/app_drawer_notebooks"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/app_drawer_books" >
+
+            <ImageView
+                android:id="@+id/ImageView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_launcher_notebooks" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Notebooks"
+                android:textColor="#7a7a7a" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/app_drawer_drawings"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/app_drawer_notebooks" >
+
+            <ImageView
+                android:id="@+id/ImageView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_launcher_drawings" />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Drawings"
+                android:textColor="#7a7a7a" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

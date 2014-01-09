@@ -41,36 +41,43 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		if (isTablet(this) == true) {
-//
-//			android.support.v4.app.FragmentManager mTimetableFragmentManager = getSupportFragmentManager();
-//			android.support.v4.app.FragmentTransaction mTimetableFragmentTransaction = mTimetableFragmentManager
-//					.beginTransaction();
-//
-//			TimetableWidgetPageFragment mTimetableFragment = new TimetableWidgetPageFragment();
-//			mTimetableFragmentTransaction.replace(
-//					R.id.layout_tablet_timetable_fragment_holder,
-//					mTimetableFragment);
-//			mTimetableFragmentTransaction.commit();
-//
-//			android.support.v4.app.FragmentManager mLessonWidgetFragmentManager = getSupportFragmentManager();
-//			android.support.v4.app.FragmentTransaction mLessonWidgetFragmentTransaction = mLessonWidgetFragmentManager
-//					.beginTransaction();
-//
-//			LessonWidgetPageFragment mLessonWidgetFragment = new LessonWidgetPageFragment();
-//			mLessonWidgetFragmentTransaction.replace(
-//					R.id.layout_tablet_lesson_widget_fragment_holder,
-//					mLessonWidgetFragment);
-//			mLessonWidgetFragmentTransaction.commit();
-//
-//		} else {
-			mPager = (ViewPager) findViewById(R.id.pager);
-			mPagerAdapter = new ScreenSlidePagerAdapter(
-					getSupportFragmentManager());
-			// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out transition animation
-			mPager.setAdapter(mPagerAdapter);
-			mPager.setCurrentItem(1);
-//		}
+		// if (isTablet(this) == true) {
+		//
+		// android.support.v4.app.FragmentManager mTimetableFragmentManager =
+		// getSupportFragmentManager();
+		// android.support.v4.app.FragmentTransaction
+		// mTimetableFragmentTransaction = mTimetableFragmentManager
+		// .beginTransaction();
+		//
+		// TimetableWidgetPageFragment mTimetableFragment = new
+		// TimetableWidgetPageFragment();
+		// mTimetableFragmentTransaction.replace(
+		// R.id.layout_tablet_timetable_fragment_holder,
+		// mTimetableFragment);
+		// mTimetableFragmentTransaction.commit();
+		//
+		// android.support.v4.app.FragmentManager mLessonWidgetFragmentManager =
+		// getSupportFragmentManager();
+		// android.support.v4.app.FragmentTransaction
+		// mLessonWidgetFragmentTransaction = mLessonWidgetFragmentManager
+		// .beginTransaction();
+		//
+		// LessonWidgetPageFragment mLessonWidgetFragment = new
+		// LessonWidgetPageFragment();
+		// mLessonWidgetFragmentTransaction.replace(
+		// R.id.layout_tablet_lesson_widget_fragment_holder,
+		// mLessonWidgetFragment);
+		// mLessonWidgetFragmentTransaction.commit();
+		//
+		// } else {
+
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
+		// transition animation
+		mPager.setAdapter(mPagerAdapter);
+		mPager.setCurrentItem(1);
+		// }
 
 		applyWallpaper();
 
