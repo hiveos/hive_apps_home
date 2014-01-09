@@ -63,7 +63,6 @@ public class LessonWidgetPageFragment extends Fragment {
 
 	@Override
 	public void onResume() {
-		updateLessonWidgetValues();
 		super.onResume();
 	}
 
@@ -71,6 +70,10 @@ public class LessonWidgetPageFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		TimetableWidgetListItems mTimetableContent = new TimetableWidgetListItems();
+
+		mTimetableWidgetItemAdapter = new TimetableWidgetItemAdapter(
+				getActivity(), R.layout.row_layout, mTimetableContent.ITEMS);
 	}
 
 	@Override
@@ -96,8 +99,8 @@ public class LessonWidgetPageFragment extends Fragment {
 				.findViewById(R.id.lesson_widget_divider1);
 
 		mWidgetUpdater = new Handler();
-		startUpdatingWidget();
 		updateLessonWidgetValues();
+		startUpdatingWidget();
 
 		return rootView;
 	}
@@ -148,13 +151,13 @@ public class LessonWidgetPageFragment extends Fragment {
 			mDivider.setVisibility(View.VISIBLE);
 
 			String mRemainingClassTime = mTimeUntilBell + "";
-			
-			if(mTimeUntilBell == 1){
+
+			if (mTimeUntilBell == 1) {
 				mClassRemainingTimeUnits.setText("MINUTE");
 			} else {
 				mClassRemainingTimeUnits.setText("MINUTES");
 			}
-			
+
 			mClassRemainingTimeView.setText(mRemainingClassTime);
 			mLessonNameView.setText(mLesson);
 
@@ -184,11 +187,6 @@ public class LessonWidgetPageFragment extends Fragment {
 	public void getLessonWidgetValues() {
 
 		getTime();
-
-		TimetableWidgetListItems mTimetableContent = new TimetableWidgetListItems();
-
-		mTimetableWidgetItemAdapter = new TimetableWidgetItemAdapter(
-				getActivity(), R.layout.row_layout, mTimetableContent.ITEMS);
 
 		mTotalTime = (mHour * 60) + mMinute;
 

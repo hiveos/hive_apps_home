@@ -4,7 +4,7 @@
 
     <RelativeLayout
         android:id="@+id/lesson_widget_parent"
-        android:layout_width="300dp"
+        android:layout_width="310dp"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

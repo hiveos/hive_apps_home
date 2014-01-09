@@ -4,29 +4,31 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 @SuppressLint("DefaultLocale")
 public class MainActivity extends FragmentActivity {
 
-	private DrawerLayout mDrawerLayout;
-	private LinearLayout mDrawerParent;
-	private ListView mDrawerList;
 	private ViewPager mPager;
+	private FrameLayout mTabletTimetableContainer;
+	private FrameLayout mTabletLessonWidgetContainer;
 
 	private PagerAdapter mPagerAdapter;
 
@@ -39,11 +41,36 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		// mPager.setPageTransformer(true, new PageTransformer());
-		mPager.setAdapter(mPagerAdapter);
-		mPager.setCurrentItem(1);
+		if (isTablet(this) == true) {
+
+			android.support.v4.app.FragmentManager mTimetableFragmentManager = getSupportFragmentManager();
+			android.support.v4.app.FragmentTransaction mTimetableFragmentTransaction = mTimetableFragmentManager
+					.beginTransaction();
+
+			TimetableWidgetPageFragment mTimetableFragment = new TimetableWidgetPageFragment();
+			mTimetableFragmentTransaction.replace(
+					R.id.layout_tablet_timetable_fragment_holder,
+					mTimetableFragment);
+			mTimetableFragmentTransaction.commit();
+
+			android.support.v4.app.FragmentManager mLessonWidgetFragmentManager = getSupportFragmentManager();
+			android.support.v4.app.FragmentTransaction mLessonWidgetFragmentTransaction = mLessonWidgetFragmentManager
+					.beginTransaction();
+
+			LessonWidgetPageFragment mLessonWidgetFragment = new LessonWidgetPageFragment();
+			mLessonWidgetFragmentTransaction.replace(
+					R.id.layout_tablet_lesson_widget_fragment_holder,
+					mLessonWidgetFragment);
+			mLessonWidgetFragmentTransaction.commit();
+
+		} else {
+			mPager = (ViewPager) findViewById(R.id.pager);
+			mPagerAdapter = new ScreenSlidePagerAdapter(
+					getSupportFragmentManager());
+			// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out transition animation
+			mPager.setAdapter(mPagerAdapter);
+			mPager.setCurrentItem(1);
+		}
 
 		applyWallpaper();
 
@@ -99,9 +126,6 @@ public class MainActivity extends FragmentActivity {
 			case 2: {
 				return fragment = new TimetableWidgetPageFragment();
 			}
-			case 3: {
-				return fragment = new SecretPageFragment();
-			}
 			default:
 				break;
 			}
@@ -148,4 +172,7 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+	public static boolean isTablet(Context context) {
+		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+	}
 }
