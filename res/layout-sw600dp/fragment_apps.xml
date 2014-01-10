@@ -2,7 +2,7 @@
     android:id="@+id/relativeLayout1"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    android:background="#d5d5d5" >
+    android:background="#eed5d5d5" >
 
     <RelativeLayout
         android:id="@+id/app_drawer_blurred_avatar_holder"
@@ -213,7 +213,7 @@
     </RelativeLayout>
     
     <RelativeLayout
-        android:id="@+id/lesson_widget_parent"
+        android:id="@+id/app_lesson_widget_parent"
         android:layout_width="310dp"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
@@ -222,7 +222,7 @@
         android:background="@drawable/widget_bg" >
 
         <TextView
-            android:id="@+id/lesson_widget_day_of_the_week"
+            android:id="@+id/app_lesson_widget_day_of_the_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -233,21 +233,21 @@
             android:textColor="#7d7d7d" />
 
         <TextView
-            android:id="@+id/lesson_widget_lesson_name"
+            android:id="@+id/app_lesson_widget_lesson_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/lesson_widget_day_of_the_week"
+            android:layout_below="@+id/app_lesson_widget_day_of_the_week"
             android:layout_marginLeft="20dp"
             android:text="Japanese"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#5a5a5a" />
 
         <LinearLayout
-            android:id="@+id/lesson_widget_divider1"
+            android:id="@+id/app_lesson_widget_divider1"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/lesson_widget_lesson_name"
+            android:layout_below="@+id/app_lesson_widget_lesson_name"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -260,7 +260,7 @@
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lesson_widget_divider1"
+            android:layout_below="@+id/app_lesson_widget_divider1"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp" >
 
@@ -272,7 +272,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/lesson_widget_remaining_title"
+                    android:id="@+id/app_lesson_widget_remaining_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="REMAINING TIME"
@@ -288,7 +288,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/lesson_widget_remaining"
+                    android:id="@+id/app_lesson_widget_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="30"
@@ -296,7 +296,7 @@
                     android:textColor="#7d7d7d" />
 
                 <TextView
-                    android:id="@+id/lesson_widget_remaining_units"
+                    android:id="@+id/app_lesson_widget_remaining_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MINUTES"

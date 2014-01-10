@@ -32,7 +32,7 @@ public class MainActivity extends FragmentActivity {
 
 	private PagerAdapter mPagerAdapter;
 
-	private static final int NUM_PAGES = 3;
+	private static int NUM_PAGES;
 
 	ArrayList<String> mUserInformation = new ArrayList<String>();
 
@@ -41,35 +41,11 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// if (isTablet(this) == true) {
-		//
-		// android.support.v4.app.FragmentManager mTimetableFragmentManager =
-		// getSupportFragmentManager();
-		// android.support.v4.app.FragmentTransaction
-		// mTimetableFragmentTransaction = mTimetableFragmentManager
-		// .beginTransaction();
-		//
-		// TimetableWidgetPageFragment mTimetableFragment = new
-		// TimetableWidgetPageFragment();
-		// mTimetableFragmentTransaction.replace(
-		// R.id.layout_tablet_timetable_fragment_holder,
-		// mTimetableFragment);
-		// mTimetableFragmentTransaction.commit();
-		//
-		// android.support.v4.app.FragmentManager mLessonWidgetFragmentManager =
-		// getSupportFragmentManager();
-		// android.support.v4.app.FragmentTransaction
-		// mLessonWidgetFragmentTransaction = mLessonWidgetFragmentManager
-		// .beginTransaction();
-		//
-		// LessonWidgetPageFragment mLessonWidgetFragment = new
-		// LessonWidgetPageFragment();
-		// mLessonWidgetFragmentTransaction.replace(
-		// R.id.layout_tablet_lesson_widget_fragment_holder,
-		// mLessonWidgetFragment);
-		// mLessonWidgetFragmentTransaction.commit();
-		//
-		// } else {
+		if (isTablet(getApplicationContext())) {
+			NUM_PAGES = 2;
+		} else if (!isTablet(getApplicationContext())) {
+			NUM_PAGES = 3;
+		}
 
 		Intent mSplashIntent = new Intent(this, WelcomeActivity.class);
 		startActivity(mSplashIntent);
@@ -80,7 +56,6 @@ public class MainActivity extends FragmentActivity {
 		// transition animation
 		mPager.setAdapter(mPagerAdapter);
 		mPager.setCurrentItem(0);
-		// }
 
 		applyWallpaper();
 
@@ -124,23 +99,38 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 
-			Fragment fragment = new Fragment();
+			Fragment mFragment = new Fragment();
 
-			switch (position) {
-			case 0: {
-				return fragment = new AppsPageFragment();
-			}
-			case 1: {
-				return fragment = new LessonWidgetPageFragment();
-			}
-			case 2: {
-				return fragment = new TimetableWidgetPageFragment();
-			}
-			default:
-				break;
-			}
-			return fragment;
+			if (isTablet(getApplicationContext()) == true) {
 
+				switch (position) {
+				case 0: {
+					return mFragment = new AppsPageFragment();
+				}
+				case 1: {
+					return mFragment = new TimetableWidgetPageFragment();
+				}
+				default:
+					break;
+				}
+			} else {
+
+				switch (position) {
+				case 0: {
+					return mFragment = new AppsPageFragment();
+				}
+				case 1: {
+					return mFragment = new LessonWidgetPageFragment();
+				}
+				case 2: {
+					return mFragment = new TimetableWidgetPageFragment();
+				}
+				default:
+					break;
+				}
+			}
+
+			return mFragment;
 		}
 
 		@Override
