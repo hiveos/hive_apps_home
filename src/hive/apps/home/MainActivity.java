@@ -71,6 +71,9 @@ public class MainActivity extends FragmentActivity {
 		//
 		// } else {
 
+		Intent mSplashIntent = new Intent(this, WelcomeActivity.class);
+		startActivity(mSplashIntent);
+
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out

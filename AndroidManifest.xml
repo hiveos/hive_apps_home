@@ -38,6 +38,11 @@
             android:label="Timetable"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
         </activity>
+        <activity
+            android:name="hive.apps.home.WelcomeActivity"
+            android:label="Welcome"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
+        </activity>
     </application>
 
 </manifest>
