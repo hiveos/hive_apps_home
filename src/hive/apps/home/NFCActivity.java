@@ -1,7 +1,5 @@
 package hive.apps.home;
 
-
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,11 +24,13 @@ import android.os.Handler;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
+import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -49,10 +49,17 @@ public class NFCActivity extends Activity {
 	int loader = R.drawable.avatar_default_4;
 	ReadText thread;
 
+	int i = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nfc);
+ 
+		if (i == 0) {
+			applyWallpaper();
+			i++;
+		}
 
 		prikaziTekst = (TextView) findViewById(R.id.tvNFC);
 		image = (ImageView) findViewById(R.id.imageView1);
@@ -254,20 +261,20 @@ public class NFCActivity extends Activity {
 						+ result + "/info/image.png";
 				imgLoader = new ImageLoader(getApplicationContext());
 				imgLoader.DisplayImage(image_url, loader, image);
-				
+
 				String name_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/name.txt";
 				String surname_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/surname.txt";
 				String class_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/class.txt";
-				String id_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/id.txt";
+				String id_url = "http://hive.bluedream.info/student/" + result
+						+ "/info/id.txt";
 				String regno_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/regno.txt";
-				
-				String sName = null, sSurname=null, sClass=null, sId=null, sRegno;
-				
+
+				String sName = null, sSurname = null, sClass = null, sId = null, sRegno;
+
 				thread = new ReadText();
 				thread.execute(name_url);
 				try {
@@ -280,7 +287,7 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				thread = new ReadText();
 				thread.execute(surname_url);
 				try {
@@ -293,7 +300,7 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				thread = new ReadText();
 				thread.execute(class_url);
 				try {
@@ -306,7 +313,7 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				thread = new ReadText();
 				thread.execute(id_url);
 				try {
@@ -319,7 +326,7 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				thread = new ReadText();
 				thread.execute(regno_url);
 				try {
@@ -332,20 +339,23 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				File informationFile = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/information");
-				if(!informationFile.exists())
+
+				File informationFile = new File(
+						Environment.getExternalStorageDirectory()
+								+ "/HIVE/User/information");
+				if (!informationFile.exists())
 					try {
 						informationFile.createNewFile();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				
+
 				try {
 
 					FileWriter fw = new FileWriter(informationFile);
-					fw.append(sName + " " + sSurname + "\n" + sId + "\n" + sClass);
+					fw.append(sName + " " + sSurname + "\n" + sId + "\n"
+							+ sClass);
 					fw.flush();
 					fw.close();
 					fw = null;
@@ -357,9 +367,10 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				File log = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/logged");
-				if(!log.exists()){
+
+				File log = new File(Environment.getExternalStorageDirectory()
+						+ "/HIVE/User/logged");
+				if (!log.exists()) {
 					try {
 						log.createNewFile();
 					} catch (IOException e) {
@@ -367,7 +378,7 @@ public class NFCActivity extends Activity {
 						e.printStackTrace();
 					}
 				}
-				
+
 				FileWriter Write;
 				try {
 					Write = new FileWriter(log);
@@ -379,14 +390,22 @@ public class NFCActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				Intent intent = new Intent(NFCActivity.this, WelcomeActivity.class);
+
+				Intent intent = new Intent(NFCActivity.this,
+						WelcomeActivity.class);
 				startActivity(intent);
 				finish();
-				
+
 			}
-			
-			
+
 		}
 	}
+
+	public void applyWallpaper() {
+		final WallpaperManager wallpaperManager = WallpaperManager
+				.getInstance(this);
+		final Drawable wallpaperDrawable = wallpaperManager.getFastDrawable();
+		getWindow().setBackgroundDrawable(wallpaperDrawable);
+	}
+
 }

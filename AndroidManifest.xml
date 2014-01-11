@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="19" />
-    
+
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
@@ -31,6 +31,7 @@
             <!-- android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" > -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -52,13 +53,17 @@
         </activity>
         <activity
             android:name="hive.apps.home.NFCActivity"
-            android:label="@string/title_activity_nfc" >
+            android:label="@string/title_activity_nfc"
+            android:theme="@style/HomescreenTheme" >
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".ScreenReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
