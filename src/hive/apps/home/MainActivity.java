@@ -79,7 +79,7 @@ public class MainActivity extends FragmentActivity {
 		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
 		// transition animation
 		mPager.setAdapter(mPagerAdapter);
-		mPager.setCurrentItem(1);
+		mPager.setCurrentItem(0);
 		// }
 
 		applyWallpaper();

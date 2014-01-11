@@ -7,38 +7,55 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WelcomeActivity extends Activity {
 
 	Blur mBlur;
+	Animations mAnimations;
 
-	ImageView mBackground;
-	ImageView mDrawerAvatar;
-	TextView mDrawerUserName;
-	TextView mDrawerUserClass;
-	TextView mDrawerUserId;
+	static ImageView mBackground;
+	static ImageView mDrawerAvatar;
+	static TextView mDrawerUserName;
+	static TextView mDrawerUserClass;
+	static TextView mDrawerUserId;
+	static LinearLayout nameHolder, classHolder, idHolder, sLinearLayout;
+	static Context kontekst;
 
 	ArrayList<String> mUserInformation = new ArrayList<String>();
+	
+	public void zavrsi(){
+		finish();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		//getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+		kontekst=this;
 
 		mDrawerAvatar = (ImageView) findViewById(R.id.splash_avatar);
 		mDrawerUserName = (TextView) findViewById(R.id.splash_user_name);
 		mDrawerUserClass = (TextView) findViewById(R.id.splash_user_class);
 		mDrawerUserId = (TextView) findViewById(R.id.splash_user_id);
 		mBackground = (ImageView) findViewById(R.id.splash_bg);
+		nameHolder=(LinearLayout)findViewById(R.id.splashNameHolder);
+		classHolder=(LinearLayout)findViewById(R.id.splashClassHolder);
+		idHolder=(LinearLayout)findViewById(R.id.splashIdHolder);
+		sLinearLayout=(LinearLayout)findViewById(R.id.splashLinearLayout);
 		
 		setUserValues();
-
+		Animations.translateAvatar();
+		Animations.translateName();
 	}
 
 	public void setUserValues() {

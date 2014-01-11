@@ -211,5 +211,100 @@
                 android:textColor="#7a7a7a" />
         </RelativeLayout>
     </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/lesson_widget_parent"
+        android:layout_width="310dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/widget_bg" >
+
+        <TextView
+            android:id="@+id/lesson_widget_day_of_the_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Friday"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#7d7d7d" />
+
+        <TextView
+            android:id="@+id/lesson_widget_lesson_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lesson_widget_day_of_the_week"
+            android:layout_marginLeft="20dp"
+            android:text="Japanese"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#5a5a5a" />
+
+        <LinearLayout
+            android:id="@+id/lesson_widget_divider1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/lesson_widget_lesson_name"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#cccccc"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lesson_widget_divider1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/lesson_widget_remaining_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REMAINING TIME"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#7d7d7d" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/lesson_widget_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#7d7d7d" />
+
+                <TextView
+                    android:id="@+id/lesson_widget_remaining_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MINUTES"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#7d7d7d"
+                    android:textSize="6sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
