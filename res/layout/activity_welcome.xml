@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
-                    android:text="IHSAN ISIK"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff" />
             </LinearLayout>

@@ -8,6 +8,7 @@
     <string name="books">Books</string>
     <string name="settings">Settings</string>
     <string name="wallpaper">Wallpaper</string>
-    
+    <string name="title_activity_nfc">NFCActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

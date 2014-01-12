@@ -1,5 +1,9 @@
 package hive.apps.home;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
@@ -9,6 +13,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +22,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -29,6 +35,9 @@ public class MainActivity extends FragmentActivity {
 	private ViewPager mPager;
 	private FrameLayout mTabletTimetableContainer;
 	private FrameLayout mTabletLessonWidgetContainer;
+	static Context k;
+	StringBuilder text2 = new StringBuilder();
+	String isLogged2;
 
 	private PagerAdapter mPagerAdapter;
 
@@ -40,16 +49,50 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		k=this;
 
+	}
+	
+	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		File log = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/logged");
+		if(log.exists()){
+			//Read text from file
+			try {
+			    BufferedReader br = new BufferedReader(new FileReader(log));
+			    String line;
+			    while ((line = br.readLine()) != null) {
+			        isLogged2=line;
+			    	//text2.append(line);
+			    }
+			    br.close();
+			}
+			catch (IOException e) {
+			    //You'll need to add proper error handling here
+			}
+			Log.d("TEXT in MA:",text2.toString());
+			if(isLogged2.equals("false")){
+				Intent intent1 = new Intent(MainActivity.this, WelcomeActivity.class);
+				startActivity(intent1);
+			}
+		}
+//		else{
+//			Intent intent1 = new Intent(MainActivity.this, WelcomeActivity.class);
+//			startActivity(intent1);
+//		}
+		
+		
 		if (isTablet(getApplicationContext())) {
 			NUM_PAGES = 2;
 		} else if (!isTablet(getApplicationContext())) {
 			NUM_PAGES = 3;
 		}
-
-		Intent mSplashIntent = new Intent(this, WelcomeActivity.class);
-		startActivity(mSplashIntent);
-
+		
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
@@ -58,8 +101,9 @@ public class MainActivity extends FragmentActivity {
 		mPager.setCurrentItem(0);
 
 		applyWallpaper();
-
 	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

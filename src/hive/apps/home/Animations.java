@@ -50,6 +50,7 @@ public class Animations {
 				((Activity) WelcomeActivity.kontekst)
 						.overridePendingTransition(R.anim.fade_in,
 								R.anim.fade_out);
+				
 				;
 
 			}
