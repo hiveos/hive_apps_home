@@ -33,9 +33,11 @@ public class ImageLoader {
     private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
     ExecutorService executorService; 
     Bitmap omGBitmap;
+    Context kont;
  
     public ImageLoader(Context context){
         fileCache=new FileCache(context);
+        kont=context;
         executorService=Executors.newFixedThreadPool(5);
     }
  
@@ -199,8 +201,10 @@ public class ImageLoader {
             {
             	photoToLoad.imageView.setImageBitmap(bitmap);
             	spremiSliku(bitmap);
-            	
-            	
+            	Intent intent = new Intent(kont,
+						WelcomeActivity.class);
+            	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				kont.startActivity(intent);
             }
             else
                 photoToLoad.imageView.setImageResource(stub_id);

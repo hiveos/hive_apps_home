@@ -40,11 +40,6 @@ public class WelcomeActivity extends Activity {
 
 	ArrayList<String> mUserInformation = new ArrayList<String>();
 	
-	public void openMain(){
-		Intent i = new Intent(this, WelcomeActivity.class);
-    	startActivity(i);
-	}
-	
 	public void zavrsi(){
 		finish();
 	}
@@ -54,8 +49,6 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		//getWindow().setBackgroundDrawableResource(R.drawable.transparent);
-		kontekst=this;
-
 		mDrawerAvatar = (ImageView) findViewById(R.id.splash_avatar);
 		mDrawerUserName = (TextView) findViewById(R.id.splash_user_name);
 		mDrawerUserClass = (TextView) findViewById(R.id.splash_user_class);
@@ -73,6 +66,7 @@ public class WelcomeActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		kontekst=this;
 		File log = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/logged");
 		if(log.exists()){
 			//Read text from file
@@ -171,7 +165,7 @@ public class WelcomeActivity extends Activity {
 		animation.setFillAfter(true);
 		WelcomeActivity.mDrawerAvatar.startAnimation(animation);
 	}
-
+	
 	public void translateName() {
 		ObjectAnimator anim = ObjectAnimator.ofFloat(
 				WelcomeActivity.mBackground, "", 0.0f);
@@ -196,7 +190,6 @@ public class WelcomeActivity extends Activity {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				// TODO Auto-generated method stub
 				((WelcomeActivity) WelcomeActivity.kontekst).finish();
 				((Activity) WelcomeActivity.kontekst)
 						.overridePendingTransition(R.anim.fade_in,

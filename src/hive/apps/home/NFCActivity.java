@@ -391,9 +391,9 @@ public class NFCActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				Intent intent = new Intent(NFCActivity.this,
-						WelcomeActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(NFCActivity.this,
+//						WelcomeActivity.class);
+//				startActivity(intent);
 				finish();
 
 			}
