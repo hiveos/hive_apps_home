@@ -12,6 +12,7 @@ import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -39,8 +40,8 @@ public class WelcomeActivity extends Activity {
 	StringBuilder text = new StringBuilder();
 
 	ArrayList<String> mUserInformation = new ArrayList<String>();
-	
-	public void zavrsi(){
+
+	public void zavrsi() {
 		finish();
 	}
 
@@ -48,56 +49,57 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-		//getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+		// getWindow().setBackgroundDrawableResource(R.drawable.transparent);
 		mDrawerAvatar = (ImageView) findViewById(R.id.splash_avatar);
 		mDrawerUserName = (TextView) findViewById(R.id.splash_user_name);
 		mDrawerUserClass = (TextView) findViewById(R.id.splash_user_class);
 		mDrawerUserId = (TextView) findViewById(R.id.splash_user_id);
 		mBackground = (ImageView) findViewById(R.id.splash_bg);
-		nameHolder=(LinearLayout)findViewById(R.id.splashNameHolder);
-		classHolder=(LinearLayout)findViewById(R.id.splashClassHolder);
-		idHolder=(LinearLayout)findViewById(R.id.splashIdHolder);
-		sLinearLayout=(LinearLayout)findViewById(R.id.splashLinearLayout);
+		nameHolder = (LinearLayout) findViewById(R.id.splashNameHolder);
+		classHolder = (LinearLayout) findViewById(R.id.splashClassHolder);
+		idHolder = (LinearLayout) findViewById(R.id.splashIdHolder);
+		sLinearLayout = (LinearLayout) findViewById(R.id.splashLinearLayout);
 	}
-	
-	
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		kontekst=this;
-		File log = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/logged");
-		if(log.exists()){
-			//Read text from file
+		kontekst = this;
+		File log = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/User/logged");
+		if (log.exists()) {
+			// Read text from file
 			try {
-			    BufferedReader br = new BufferedReader(new FileReader(log));
-			    String line;
-			    while ((line = br.readLine()) != null) {
-			        //text.append(line);
-			        isLogged=line;
-			    }
-			    
-			    br.close();
+				BufferedReader br = new BufferedReader(new FileReader(log));
+				String line;
+				while ((line = br.readLine()) != null) {
+					// text.append(line);
+					isLogged = line;
+				}
+
+				br.close();
+			} catch (IOException e) {
+				// You'll need to add proper error handling here
 			}
-			catch (IOException e) {
-			    //You'll need to add proper error handling here
-			}
-			Log.d("TEXT in WA:",text.toString());
-			if(isLogged.equals("false")){
-				Intent intent1 = new Intent(WelcomeActivity.this, NFCActivity.class);
+			Log.d("TEXT in WA:", text.toString());
+			if (isLogged.equals("false")) {
+				Intent intent1 = new Intent(WelcomeActivity.this,
+						NFCActivity.class);
 				startActivity(intent1);
 			}
-		}
-		else{
+		} else {
 			Intent intent1 = new Intent(WelcomeActivity.this, NFCActivity.class);
 			startActivity(intent1);
 		}
-		
-		
+
 		setUserValues();
-		translateAvatar();
-		translateName();
+		if (isTablet(kontekst)) {
+			translateAvatar();
+			translateName();
+		} else {
+			finish();
+		}
 	}
 
 	public void setUserValues() {
@@ -158,14 +160,14 @@ public class WelcomeActivity extends Activity {
 
 		mBackground.setImageBitmap(mBlurredBmp);
 	}
-	
+
 	public void translateAvatar() {
 		Animation animation = new TranslateAnimation(0, -250, 0, -465);
 		animation.setDuration(2000);
 		animation.setFillAfter(true);
 		WelcomeActivity.mDrawerAvatar.startAnimation(animation);
 	}
-	
+
 	public void translateName() {
 		ObjectAnimator anim = ObjectAnimator.ofFloat(
 				WelcomeActivity.mBackground, "", 0.0f);
@@ -205,6 +207,10 @@ public class WelcomeActivity extends Activity {
 		animation.setFillAfter(true);
 		WelcomeActivity.sLinearLayout.startAnimation(animation);
 
+	}
+
+	public static boolean isTablet(Context context) {
+		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
 
 }
