@@ -13,5 +13,10 @@
     <string name="no_connection">Can\'t communicate with HIVE servers</string>
     <string name="no_connection_info">\nPlease contact your administrators for assistance</string>
     <string name="wireless_settings">Wireless Settings</string>
+    <string name="show_card">Show your card</string>
+    <string name="show_card_info">\nHold your card close to the back of your device to log in</string>
+    <string name="error_nfc_disabled">NFC is disabled</string>
+    <string name="error_nfc_disabled_info">Please contact your administrator for assistance</string>
+    <string name="nfc_settings">NFC Settings</string>
 
 </resources>

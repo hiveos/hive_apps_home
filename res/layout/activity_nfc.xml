@@ -2,35 +2,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#bb000000"
     tools:context=".NFCActivity" >
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="70dp"
-        android:background="#eeffffff" >
+        android:layout_marginRight="30dp" >
 
         <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="300dp"
+            android:id="@+id/nfc_card"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_centerInParent="true"
             android:layout_margin="20dp"
             android:layout_marginBottom="56dp"
-            android:src="@drawable/card" />
+            android:src="@drawable/ic_card" />
 
         <TextView
-            android:id="@+id/tvNFC"
+            android:id="@+id/nfc_title"
+            style="@style/RobotoTextViewThin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView1"
-            android:textColor="#aaaaaa"
+            android:layout_below="@+id/nfc_card"
             android:layout_centerHorizontal="true"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="@string/show_card"
+            android:textColor="#bbbbbb"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/nfc_desc"
+            style="@style/RobotoTextViewThin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nfc_title"
+            android:layout_centerHorizontal="true"
+            android:text="@string/show_card_info"
+            android:textColor="#bbbbbb"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/go_to_nfc_settings"
+            style="@style/RobotoTextViewThin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nfc_desc"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/nfc_settings"
+            android:textColor="#bbbbbb"
+            android:textSize="16sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </RelativeLayout>

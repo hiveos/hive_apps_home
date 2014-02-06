@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,44 +40,35 @@ public class NFCActivity extends Activity {
 	public static final String MIME_TEXT_PLAIN = "text/plain";
 	public static final String TAG = "NfcDemo";
 
-	private TextView prikaziTekst; // Tekst koji ce nas izvjestavati
+	private TextView mTitle;
+	private TextView mDesc;
+	private ImageView mCard;
+	private TextView mNfcSettings;
+
 	private NfcAdapter mNfcAdapter;
 	ImageView image;
 	ImageLoader imgLoader;
 	int loader = R.drawable.avatar_default_4;
 	ReadText thread;
 
-	int i = 0;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nfc);
 
-		if (i == 0) {
-			applyWallpaper();
-			i++;
-		}
+		mTitle = (TextView) findViewById(R.id.nfc_title);
+		mDesc = (TextView) findViewById(R.id.nfc_desc);
+		mCard = (ImageView) findViewById(R.id.nfc_card);
+		mNfcSettings = (TextView) findViewById(R.id.go_to_nfc_settings);
 
-		prikaziTekst = (TextView) findViewById(R.id.tvNFC);
 		image = (ImageView) findViewById(R.id.imageView1);
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
 		if (mNfcAdapter == null) {
-			// Ako uredjaj ne podrzava NFC, izadji iz aplikacije i reci da ne
-			// podrzava
 			Toast.makeText(this, "This device doesn't support NFC.",
 					Toast.LENGTH_LONG).show();
 			finish();
 			return;
-
-		}
-
-		if (!mNfcAdapter.isEnabled()) {
-			// Ako je NFC iskljucen onda ispisi da je iskljucen
-			prikaziTekst.setText("NFC is disabled.");
-		} else {
-			prikaziTekst.setText("PUT YOUR NFC CARD");
 		}
 
 		handleIntent(getIntent());
@@ -121,7 +113,24 @@ public class NFCActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
+		if (isNetworkAvailable()) {
+			if (!mNfcAdapter.isEnabled()) {
+				mTitle.setText(R.string.error_nfc_disabled);
+				mDesc.setText(R.string.error_nfc_disabled_info);
+				mCard.setImageResource(R.drawable.ic_card_error);
+
+				if (getResources().getBoolean(R.bool.superUserMode)) {
+					mNfcSettings.setVisibility(View.VISIBLE);
+				}
+			} else {
+				mTitle.setText(R.string.show_card);
+				mDesc.setText(R.string.show_card_info);
+				mCard.setImageResource(R.drawable.ic_card);
+			}
+		} else {
+			Intent i = new Intent(this, NoNetworkActivity.class);
+			startActivity(i);
+		}
 	}
 
 	@Override
@@ -130,6 +139,35 @@ public class NFCActivity extends Activity {
 		// Ovo mora biti jer ako nema ovoga, kada se aplikacija ponovo resume-a,
 		// bio bi crash
 		setupForegroundDispatch(this, mNfcAdapter);
+		applyWallpaper();
+
+		if (isNetworkAvailable()) {
+			if (!mNfcAdapter.isEnabled()) {
+				mTitle.setText(R.string.error_nfc_disabled);
+				mDesc.setText(R.string.error_nfc_disabled_info);
+				mCard.setImageResource(R.drawable.ic_card_error);
+
+				if (getResources().getBoolean(R.bool.superUserMode)) {
+					mNfcSettings.setVisibility(View.VISIBLE);
+				}
+			} else {
+				mTitle.setText(R.string.show_card);
+				mDesc.setText(R.string.show_card_info);
+				mCard.setImageResource(R.drawable.ic_card);
+			}
+		} else {
+			Intent i = new Intent(this, NoNetworkActivity.class);
+			startActivity(i);
+		}
+
+		mNfcSettings.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent(
+						android.provider.Settings.ACTION_NFC_SETTINGS), 0);
+			}
+		});
 	}
 
 	@Override
@@ -253,7 +291,6 @@ public class NFCActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			if (result != null) {
-				prikaziTekst.setText("Welcome Back " + result);
 				String image_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/image.png";
 				imgLoader = new ImageLoader(getApplicationContext());
@@ -405,4 +442,10 @@ public class NFCActivity extends Activity {
 		getWindow().setBackgroundDrawable(wallpaperDrawable);
 	}
 
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
 }
