@@ -1,6 +1,5 @@
 package hive.apps.home;
 
-import hive.apps.home.LessonWidgetPageFragment.TimetableWidgetItemAdapter;
 import hive.apps.home.TimetableWidgetListItems.TimetableItem;
 
 import java.io.BufferedReader;
@@ -31,8 +30,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 
 public class AppsPageFragment extends Fragment {
 
@@ -41,6 +40,9 @@ public class AppsPageFragment extends Fragment {
 	TextView mDrawerUserName;
 	TextView mDrawerUserClass;
 	TextView mDrawerUserId;
+	LinearLayout mSystemSettingsContainer;
+	ImageView mSystemSettings;
+	ImageView mWallpaperSelection;
 
 	RelativeLayout mBooks;
 	RelativeLayout mNotebooks;
@@ -116,12 +118,18 @@ public class AppsPageFragment extends Fragment {
 				.findViewById(R.id.app_drawer_user_id);
 		mDrawerAvatarBlurred = (ImageView) rootView
 				.findViewById(R.id.app_drawer_avatar_blurred);
+		mSystemSettings = (ImageView) rootView
+				.findViewById(R.id.system_settings_button);
+		mWallpaperSelection = (ImageView) rootView
+				.findViewById(R.id.wallpaper_button);
 
 		mBooks = (RelativeLayout) rootView.findViewById(R.id.app_drawer_books);
 		mNotebooks = (RelativeLayout) rootView
 				.findViewById(R.id.app_drawer_notebooks);
 		mDrawings = (RelativeLayout) rootView
 				.findViewById(R.id.app_drawer_drawings);
+		mSystemSettingsContainer = (LinearLayout) rootView
+				.findViewById(R.id.system_settings_container);
 
 		mBooks.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -155,6 +163,26 @@ public class AppsPageFragment extends Fragment {
 				startActivity(mDrawingsIntent);
 			}
 		});
+
+		mSystemSettings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent(
+						android.provider.Settings.ACTION_SETTINGS), 0);
+			}
+		});
+
+		mWallpaperSelection.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
+				startActivity(Intent.createChooser(intent, "Select Wallpaper"));
+			}
+		});
+
+		if (getResources().getBoolean(R.bool.superUserMode)) {
+			mSystemSettingsContainer.setVisibility(View.VISIBLE);
+		}
 
 		setUserValues();
 

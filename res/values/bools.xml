@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <bool name="isTablet">false</bool>
+    <!-- Boolean that defines whether options such as system settigns and wallpapers will be shown to the user -->
+    <bool name="superUserMode">true</bool>
 
 </resources>
