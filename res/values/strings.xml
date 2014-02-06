@@ -10,5 +10,8 @@
     <string name="wallpaper">Wallpaper</string>
     <string name="title_activity_nfc">NFCActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="no_connection">Can\'t communicate with HIVE servers</string>
+    <string name="no_connection_info">\nPlease contact your administrators for assistance</string>
+    <string name="wireless_settings">Wireless Settings</string>
 
 </resources>
