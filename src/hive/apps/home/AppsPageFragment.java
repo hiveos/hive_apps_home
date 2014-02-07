@@ -157,8 +157,8 @@ public class AppsPageFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent mDrawingsIntent = new Intent(Intent.ACTION_ALL_APPS);
-				mDrawingsIntent.setClassName("com.example.drawing",
-						"com.example.drawing.Browser");
+				mDrawingsIntent.setClassName("hive.apps.drawings",
+						"hive.apps.drawings.Browser");
 				mDrawingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(mDrawingsIntent);
 			}
