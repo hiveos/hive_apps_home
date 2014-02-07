@@ -46,7 +46,6 @@ public class NFCActivity extends Activity {
 	private TextView mNfcSettings;
 
 	private NfcAdapter mNfcAdapter;
-	ImageView image;
 	ImageLoader imgLoader;
 	int loader = R.drawable.avatar_default_4;
 	ReadText thread;
@@ -61,7 +60,6 @@ public class NFCActivity extends Activity {
 		mCard = (ImageView) findViewById(R.id.nfc_card);
 		mNfcSettings = (TextView) findViewById(R.id.go_to_nfc_settings);
 
-		image = (ImageView) findViewById(R.id.imageView1);
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
 		if (mNfcAdapter == null) {
@@ -294,7 +292,7 @@ public class NFCActivity extends Activity {
 				String image_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/image.png";
 				imgLoader = new ImageLoader(getApplicationContext());
-				imgLoader.DisplayImage(image_url, loader, image);
+				imgLoader.DisplayImage(image_url, loader, mCard);
 
 				String name_url = "http://hive.bluedream.info/student/"
 						+ result + "/info/name.txt";
