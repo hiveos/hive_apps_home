@@ -27,6 +27,7 @@
         <activity
             android:name="hive.apps.home.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/HomescreenTheme" >
 
             <!-- android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" > -->
@@ -38,23 +39,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="hive.apps.home.AppDrawer"
-            android:label="Apps"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
-        </activity>
-        <activity
-            android:name="hive.apps.home.TimetableListView"
-            android:label="Timetable"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
-        </activity>
-        <activity
             android:name="hive.apps.home.WelcomeActivity"
             android:label="Welcome"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor" >
         </activity>
         <activity
             android:name="hive.apps.home.NFCActivity"
             android:label="@string/title_activity_nfc"
+            android:screenOrientation="portrait"
             android:theme="@style/HomescreenTheme" >
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -66,6 +59,7 @@
         </activity>
         <activity
             android:name=".NoNetworkActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomescreenTheme" >
         </activity>
 
