@@ -53,6 +53,18 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		k=this;
 
+		if (isTablet(getApplicationContext())) {
+			NUM_PAGES = 2;
+		} else if (!isTablet(getApplicationContext())) {
+			NUM_PAGES = 3;
+		}
+		
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
+		// transition animation
+		mPager.setAdapter(mPagerAdapter);
+		mPager.setCurrentItem(0);
 	}
 	
 	
@@ -95,24 +107,10 @@ public class MainActivity extends FragmentActivity {
 //			startActivity(intent1);
 //		}
 		
-		
-		if (isTablet(getApplicationContext())) {
-			NUM_PAGES = 2;
-		} else if (!isTablet(getApplicationContext())) {
-			NUM_PAGES = 3;
-		}
-		
 		Intent mDeviceAdminIntent = new Intent();
 		mDeviceAdminIntent.setAction("hive.action.General");
 		mDeviceAdminIntent.putExtra("do", "REQUEST_DEVICE_ADMIN");
 		sendBroadcast(mDeviceAdminIntent);
-		
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
-		// transition animation
-		mPager.setAdapter(mPagerAdapter);
-		mPager.setCurrentItem(0);
 
 		applyWallpaper();
 	}
