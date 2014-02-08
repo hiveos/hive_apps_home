@@ -124,6 +124,7 @@ public class NFCActivity extends Activity {
 				mTitle.setText(R.string.show_card);
 				mDesc.setText(R.string.show_card_info);
 				mCard.setImageResource(R.drawable.ic_card);
+				mNfcSettings.setVisibility(View.GONE);
 			}
 		} else {
 			Intent i = new Intent(this, NoNetworkActivity.class);
@@ -152,6 +153,7 @@ public class NFCActivity extends Activity {
 				mTitle.setText(R.string.show_card);
 				mDesc.setText(R.string.show_card_info);
 				mCard.setImageResource(R.drawable.ic_card);
+				mNfcSettings.setVisibility(View.GONE);
 			}
 		} else {
 			Intent i = new Intent(this, NoNetworkActivity.class);

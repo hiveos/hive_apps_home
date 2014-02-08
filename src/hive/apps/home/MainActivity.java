@@ -102,6 +102,11 @@ public class MainActivity extends FragmentActivity {
 			NUM_PAGES = 3;
 		}
 		
+		Intent mDeviceAdminIntent = new Intent();
+		mDeviceAdminIntent.setAction("hive.action.General");
+		mDeviceAdminIntent.putExtra("do", "REQUEST_DEVICE_ADMIN");
+		sendBroadcast(mDeviceAdminIntent);
+		
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
