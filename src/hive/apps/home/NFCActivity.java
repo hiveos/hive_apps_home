@@ -1,12 +1,23 @@
 package hive.apps.home;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -49,6 +60,10 @@ public class NFCActivity extends Activity {
 	ImageLoader imgLoader;
 	int loader = R.drawable.avatar_default_4;
 	ReadText thread;
+
+	String uniqueId;
+
+	ArrayList<String> mUserInformation = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +131,7 @@ public class NFCActivity extends Activity {
 				mTitle.setText(R.string.error_nfc_disabled);
 				mDesc.setText(R.string.error_nfc_disabled_info);
 				mCard.setImageResource(R.drawable.ic_card_error);
-
-				if (getResources().getBoolean(R.bool.superUserMode)) {
-					mNfcSettings.setVisibility(View.VISIBLE);
-				}
+				mNfcSettings.setVisibility(View.VISIBLE);
 			} else {
 				mTitle.setText(R.string.show_card);
 				mDesc.setText(R.string.show_card_info);
@@ -145,10 +157,7 @@ public class NFCActivity extends Activity {
 				mTitle.setText(R.string.error_nfc_disabled);
 				mDesc.setText(R.string.error_nfc_disabled_info);
 				mCard.setImageResource(R.drawable.ic_card_error);
-
-				if (getResources().getBoolean(R.bool.superUserMode)) {
-					mNfcSettings.setVisibility(View.VISIBLE);
-				}
+				mNfcSettings.setVisibility(View.VISIBLE);
 			} else {
 				mTitle.setText(R.string.show_card);
 				mDesc.setText(R.string.show_card_info);
@@ -291,145 +300,7 @@ public class NFCActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			if (result != null) {
-				String image_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/image.png";
-				imgLoader = new ImageLoader(getApplicationContext());
-				imgLoader.DisplayImage(image_url, loader, mCard);
-
-				String name_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/name.txt";
-				String surname_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/surname.txt";
-				String class_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/class.txt";
-				String id_url = "http://hive.bluedream.info/student/" + result
-						+ "/info/id.txt";
-				String regno_url = "http://hive.bluedream.info/student/"
-						+ result + "/info/regno.txt";
-
-				String sName = null, sSurname = null, sClass = null, sId = null, sRegno;
-
-				thread = new ReadText();
-				thread.execute(name_url);
-				try {
-					// WE ARE TRYING TO GET STRING CONTENT FROM AS A RESULT
-					sName = thread.get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				thread = new ReadText();
-				thread.execute(surname_url);
-				try {
-					// WE ARE TRYING TO GET STRING CONTENT FROM AS A RESULT
-					sSurname = thread.get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				thread = new ReadText();
-				thread.execute(class_url);
-				try {
-					// WE ARE TRYING TO GET STRING CONTENT FROM AS A RESULT
-					sClass = thread.get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				thread = new ReadText();
-				thread.execute(id_url);
-				try {
-					// WE ARE TRYING TO GET STRING CONTENT FROM AS A RESULT
-					sId = thread.get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				thread = new ReadText();
-				thread.execute(regno_url);
-				try {
-					// WE ARE TRYING TO GET STRING CONTENT FROM AS A RESULT
-					sRegno = thread.get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				File informationFile = new File(
-						Environment.getExternalStorageDirectory()
-								+ "/HIVE/User/information");
-				if (!informationFile.exists())
-					try {
-						informationFile.createNewFile();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				try {
-
-					FileWriter fw = new FileWriter(informationFile);
-					fw.append(sName + " " + sSurname + "\n" + sId + "\n"
-							+ sClass);
-					fw.flush();
-					fw.close();
-					fw = null;
-
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				File log = new File(Environment.getExternalStorageDirectory()
-						+ "/HIVE/User/logged");
-				if (!log.exists()) {
-					try {
-						log.createNewFile();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
-				FileWriter Write;
-				try {
-					Write = new FileWriter(log);
-					Write.write("true");
-					Write.flush();
-					Write.close();
-					Write = null;
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				// Intent intent = new Intent(NFCActivity.this,
-				// WelcomeActivity.class);
-				// startActivity(intent);
-				finish();
-
+				new LoginTask().execute(result);
 			}
 
 		}
@@ -448,4 +319,114 @@ public class NFCActivity extends Activity {
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
+
+	private class LoginTask extends AsyncTask<String, Integer, String> {
+
+		String response;
+		String[] responses;
+
+		protected String doInBackground(String... receivedUniquesId) {
+			String uniqueId = receivedUniquesId[0];
+			String LoginUrl = "http://hive.bluedream.info/api/"
+					+ uniqueId.toString() + "/login";
+
+			try {
+				HttpClient client = new DefaultHttpClient();
+				HttpGet get = new HttpGet(LoginUrl);
+				HttpResponse responseGet;
+				responseGet = client.execute(get);
+				HttpEntity resEntityGet = responseGet.getEntity();
+
+				if (resEntityGet != null) {
+					response = EntityUtils.toString(resEntityGet);
+				} else {
+
+				}
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			prepareData();
+		}
+
+		private void prepareData() {
+			String image, name, sclass, ssid, unique, admin;
+
+			if (response.equals("Sorry, the ID provided is not valid!")) {
+				Toast.makeText(getApplication(), R.string.error_wrong_card,
+						Toast.LENGTH_LONG).show();
+			} else {
+				responses = response.split(",");
+				image = responses[0].toString();
+				name = responses[1].toString();
+				sclass = responses[2].toString();
+				ssid = responses[3].toString();
+				unique = responses[4].toString();
+				admin = responses[5].toString();
+
+				writeData(image, name, sclass, ssid, unique, admin);
+			}
+		}
+
+		public void writeData(String image, String name, String sclass,
+				String ssid, String unique, String admin) {
+
+			imgLoader = new ImageLoader(getApplicationContext());
+			imgLoader.DisplayImage(image.substring(image.indexOf("=") + 1),
+					loader, mCard);
+
+			File informationFile = new File(
+					Environment.getExternalStorageDirectory()
+							+ "/HIVE/User/information");
+			if (!informationFile.exists())
+				try {
+					informationFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			try {
+
+				FileWriter fw = new FileWriter(informationFile);
+				fw.append(image + "\n" + name + "\n" + ssid + "\n" + sclass
+						+ "\n" + unique + "\n" + admin);
+				fw.flush();
+				fw.close();
+				fw = null;
+
+				File log = new File(Environment.getExternalStorageDirectory()
+						+ "/HIVE/User/logged");
+				if (!log.exists()) {
+
+					log.createNewFile();
+
+				}
+
+				FileWriter Write;
+
+				Write = new FileWriter(log);
+				Write.write("true");
+				Write.flush();
+				Write.close();
+				Write = null;
+
+				finish();
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
 }

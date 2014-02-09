@@ -175,13 +175,14 @@ public class AppsPageFragment extends Fragment {
 		mWallpaperSelection.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String title = getResources().getString(R.string.select_wallpaper);
+				String title = getResources().getString(
+						R.string.select_wallpaper);
 				Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
 				startActivity(Intent.createChooser(intent, title));
 			}
 		});
 
-		if (getResources().getBoolean(R.bool.superUserMode)) {
+		if (isAdmin()) {
 			mSystemSettingsContainer.setVisibility(View.VISIBLE);
 		}
 
@@ -230,9 +231,30 @@ public class AppsPageFragment extends Fragment {
 		if (mUserAvatarFile.exists() && mUserInfoFile.exists()) {
 			mDrawerAvatar.setImageBitmap(mUserAvatar);
 			blurAvatar(mUserAvatarPath);
-			mDrawerUserName.setText(mUserInformation.get(0).toUpperCase());
-			mDrawerUserId.setText(mUserInformation.get(1).toUpperCase());
-			mDrawerUserClass.setText(mUserInformation.get(2));
+			mDrawerUserName
+					.setText(" "
+							+ mUserInformation
+									.get(1)
+									.substring(
+											mUserInformation.get(1)
+													.indexOf("=") + 1)
+									.toUpperCase());
+			mDrawerUserId
+					.setText(" "
+							+ mUserInformation
+									.get(2)
+									.substring(
+											mUserInformation.get(2)
+													.indexOf("=") + 1)
+									.toUpperCase());
+			mDrawerUserClass
+					.setText(" "
+							+ mUserInformation
+									.get(3)
+									.substring(
+											mUserInformation.get(3)
+													.indexOf("=") + 1)
+									.toUpperCase());
 
 		} else {
 			mDrawerAvatar.setImageResource(R.drawable.avatar_default_4);
@@ -489,5 +511,34 @@ public class AppsPageFragment extends Fragment {
 
 	public static boolean isTablet(Context context) {
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+	}
+
+	public boolean isAdmin() {
+		File mUserInfoFile = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/User/information");
+
+		try {
+			BufferedReader mBufferReader = new BufferedReader(new FileReader(
+					mUserInfoFile));
+			String line;
+
+			mUserInformation.clear();
+
+			while ((line = mBufferReader.readLine()) != null) {
+				mUserInformation.add(line);
+			}
+		} catch (IOException e) {
+		}
+
+		String adminvalue = mUserInformation.get(5).substring(
+				mUserInformation.get(5).indexOf("=") + 1);
+		Log.d("TAG", adminvalue);
+
+		if (adminvalue.equals("1")) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 }

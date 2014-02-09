@@ -51,62 +51,61 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		k=this;
+		k = this;
 
 		if (isTablet(getApplicationContext())) {
 			NUM_PAGES = 2;
 		} else if (!isTablet(getApplicationContext())) {
 			NUM_PAGES = 3;
 		}
-		
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		// mPager.setPageTransformer(true, new PageTransformer()); // Zoom out
-		// transition animation
-		mPager.setAdapter(mPagerAdapter);
-		mPager.setCurrentItem(0);
 	}
-	
-	
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
+
 		if (isNetworkAvailable()) {
 
 		} else {
 			Intent i = new Intent(this, NoNetworkActivity.class);
 			startActivity(i);
 		}
-		
-		File log = new File(Environment.getExternalStorageDirectory()+"/HIVE/User/logged");
-		if(log.exists()){
-			//Read text from file
+
+		File log = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/User/logged");
+		if (log.exists()) {
 			try {
-			    BufferedReader br = new BufferedReader(new FileReader(log));
-			    String line;
-			    while ((line = br.readLine()) != null) {
-			        isLogged2=line;
-			    	//text2.append(line);
-			    }
-			    br.close();
+				BufferedReader br = new BufferedReader(new FileReader(log));
+				String line;
+				while ((line = br.readLine()) != null) {
+					isLogged2 = line;
+				}
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			catch (IOException e) {
-			    //You'll need to add proper error handling here
-			}
-			Log.d("TEXT in MA:",text2.toString());
-			if(isLogged2.equals("false")){
-				Intent intent1 = new Intent(MainActivity.this, WelcomeActivity.class);
+			Log.d("TEXT in MA:", text2.toString());
+			if (isLogged2.equals("false")) {
+				Intent intent1 = new Intent(MainActivity.this,
+						WelcomeActivity.class);
 				startActivity(intent1);
+			} else {
+				mPager = (ViewPager) findViewById(R.id.pager);
+				mPagerAdapter = new ScreenSlidePagerAdapter(
+						getSupportFragmentManager());
+				// mPager.setPageTransformer(true, new PageTransformer()); //
+				// Zoom out
+				// transition animation
+				mPager.setAdapter(mPagerAdapter);
 			}
 		}
-//		else{
-//			Intent intent1 = new Intent(MainActivity.this, WelcomeActivity.class);
-//			startActivity(intent1);
-//		}
-		
+		// else{
+		// Intent intent1 = new Intent(MainActivity.this,
+		// WelcomeActivity.class);
+		// startActivity(intent1);
+		// }
+
 		Intent mDeviceAdminIntent = new Intent();
 		mDeviceAdminIntent.setAction("hive.action.General");
 		mDeviceAdminIntent.putExtra("do", "REQUEST_DEVICE_ADMIN");
@@ -114,8 +113,6 @@ public class MainActivity extends FragmentActivity {
 
 		applyWallpaper();
 	}
-
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -237,5 +234,34 @@ public class MainActivity extends FragmentActivity {
 		NetworkInfo activeNetworkInfo = connectivityManager
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
+	public boolean isAdmin() {
+		File mUserInfoFile = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/User/information");
+
+		try {
+			BufferedReader mBufferReader = new BufferedReader(new FileReader(
+					mUserInfoFile));
+			String line;
+
+			mUserInformation.clear();
+
+			while ((line = mBufferReader.readLine()) != null) {
+				mUserInformation.add(line);
+			}
+		} catch (IOException e) {
+		}
+
+		String adminvalue = mUserInformation.get(5).substring(
+				mUserInformation.get(5).indexOf("=") + 1);
+		Log.d("TAG", adminvalue);
+
+		if (adminvalue.equals("1")) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 }

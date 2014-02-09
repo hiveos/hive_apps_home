@@ -27,5 +27,6 @@
     <string name="id_">ID: </string>
     <string name="remaining_time">REMAINING TIME</string>
     <string name="timetable">Timetable</string>
+    <string name="error_wrong_card">Card not registered to any student. Please use a valid card.</string>
 
 </resources>

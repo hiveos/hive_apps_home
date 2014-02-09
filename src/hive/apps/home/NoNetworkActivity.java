@@ -1,5 +1,11 @@
 package hive.apps.home;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.WallpaperManager;
@@ -10,8 +16,10 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +28,8 @@ public class NoNetworkActivity extends Activity {
 
 	TextView mWirelessSettings;
 
+	ArrayList<String> mUserInformation = new ArrayList<String>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,9 +37,7 @@ public class NoNetworkActivity extends Activity {
 		applyWallpaper();
 
 		mWirelessSettings = (TextView) findViewById(R.id.go_to_wireless_settings);
-		if (getResources().getBoolean(R.bool.superUserMode)) {
-			mWirelessSettings.setVisibility(View.VISIBLE);
-		}
+		mWirelessSettings.setVisibility(View.VISIBLE);
 
 		mWirelessSettings.setOnClickListener(new View.OnClickListener() {
 
@@ -56,7 +64,7 @@ public class NoNetworkActivity extends Activity {
 			finish();
 		}
 	}
-	
+
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		// TODO Auto-generated method stub
