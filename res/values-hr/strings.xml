@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Home</string>
+    <string name="action_settings">Settings</string>
+    <string name="notebooks">Notebooks</string>
+    <string name="drawings">Drawings</string>
+    <string name="books">Books</string>
+    <string name="settings">Settings</string>
+    <string name="wallpaper">Wallpaper</string>
+    <string name="no_connection">Can\'t communicate with HIVE servers</string>
+    <string name="no_connection_info">\nPlease contact your administrators for assistance</string>
+    <string name="wireless_settings">Wireless Settings</string>
+    <string name="show_card">Show your card</string>
+    <string name="show_card_info">\nHold your card close to the back of your device to log in</string>
+    <string name="error_nfc_disabled">NFC is disabled</string>
+    <string name="error_nfc_disabled_info">Please contact your administrator for assistance</string>
+    <string name="nfc_settings">NFC Settings</string>
+    <string name="select_wallpaper">Select Wallpaper</string>
+    <string name="minute">MINUTE</string>
+    <string name="minutes">MINUTES</string>
+    <string name="no_classes">NO CLASSES!</string>
+    <string name="breaktime">Breaktime</string>
+    <string name="lunchbreak">Lunch Break</string>
+    <string name="name_">NAME: </string>
+    <string name="class_">CLASS: </string>
+    <string name="id_">ID: </string>
+    <string name="remaining_time">REMAINING TIME</string>
+    <string name="timetable">Timetable</string>
+
+</resources>
