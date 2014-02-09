@@ -18,7 +18,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Friday"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#7d7d7d" />
 
@@ -29,7 +28,6 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/lesson_widget_day_of_the_week"
             android:layout_marginLeft="20dp"
-            android:text="Japanese"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#5a5a5a" />
 
@@ -65,7 +63,7 @@
                     android:id="@+id/lesson_widget_remaining_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="REMAINING TIME"
+                    android:text="@string/remaining_time"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#7d7d7d" />
             </LinearLayout>
@@ -81,7 +79,6 @@
                     android:id="@+id/lesson_widget_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="30"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#7d7d7d" />
 
@@ -89,7 +86,6 @@
                     android:id="@+id/lesson_widget_remaining_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MINUTES"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#7d7d7d"
                     android:textSize="6sp" />

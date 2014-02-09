@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ev</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="notebooks">Defterler</string>
+    <string name="drawings">Çizimler</string>
+    <string name="books">Kitaplar</string>
+    <string name="settings">Ayarlar</string>
+    <string name="wallpaper">Arka Plan Resmi</string>
+    <string name="no_connection">HIVE sunucularına bağlanılamıyor</string>
+    <string name="no_connection_info">\nYardım almak için lütfen yöneticilerinizle irtibata geçin</string>
+    <string name="wireless_settings">Kablosuz Ayarları</string>
+    <string name="show_card">Kartını Göster</string>
+    <string name="show_card_info">\nGiriş yapmak için kartını cihazın arka tarafına yakın tut</string>
+    <string name="error_nfc_disabled">NFC kapalı</string>
+    <string name="error_nfc_disabled_info">Yardım almak için lütfen yöneticilerinizle irtibata geçin</string>
+    <string name="nfc_settings">NFC Ayarları</string>
+    <string name="select_wallpaper">Arka Plan Resmi Seç</string>
+    <string name="minute">DAKİKA</string>
+    <string name="minutes">DAKİKA</string>
+    <string name="no_classes">DERS YOK!</string>
+    <string name="breaktime">Teneffüs</string>
+    <string name="lunchbreak">Öğle Arası</string>
+    <string name="name_">İSİM: </string>
+    <string name="class_">SINIF: </string>
+    <string name="id_">ID: </string>
+    <string name="remaining_time">KALAN ZAMAN</string>
+    <string name="timetable">Ders Programı</string>
+
+</resources>

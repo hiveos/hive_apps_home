@@ -46,7 +46,6 @@
         </activity>
         <activity
             android:name="hive.apps.home.NFCActivity"
-            android:label="@string/title_activity_nfc"
             android:screenOrientation="portrait"
             android:theme="@style/HomescreenTheme" >
             <intent-filter>

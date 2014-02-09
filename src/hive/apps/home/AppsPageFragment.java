@@ -175,8 +175,9 @@ public class AppsPageFragment extends Fragment {
 		mWallpaperSelection.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				String title = getResources().getString(R.string.select_wallpaper);
 				Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
-				startActivity(Intent.createChooser(intent, "Select Wallpaper"));
+				startActivity(Intent.createChooser(intent, title));
 			}
 		});
 
@@ -317,9 +318,9 @@ public class AppsPageFragment extends Fragment {
 			String mRemainingClassTime = mTimeUntilBell + "";
 
 			if (mTimeUntilBell == 1) {
-				mClassRemainingTimeUnits.setText("MINUTE");
+				mClassRemainingTimeUnits.setText(R.string.minute);
 			} else {
-				mClassRemainingTimeUnits.setText("MINUTES");
+				mClassRemainingTimeUnits.setText(R.string.minutes);
 			}
 
 			mClassRemainingTimeView.setText(mRemainingClassTime);
@@ -342,7 +343,7 @@ public class AppsPageFragment extends Fragment {
 			mClassRemainingTimeUnits.setVisibility(View.GONE);
 			mDivider.setVisibility(View.GONE);
 
-			mLessonNameView.setText("No Classes!");
+			mLessonNameView.setText(R.string.no_classes);
 
 		}
 
@@ -362,7 +363,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if (mHour == 9 && mMinute < 15) {
 			mTimeUntilBell = 555 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
@@ -374,7 +375,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if ((mHour == 9 && mMinute >= 55) || (mHour == 10 && mMinute < 5)) {
 			mTimeUntilBell = 605 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
@@ -386,7 +387,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if (mHour == 10 && mMinute >= 45 && mMinute < 55) {
 			mTimeUntilBell = 655 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
@@ -399,7 +400,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if (mHour == 11 && mMinute >= 35 && mMinute < 45) {
 			mTimeUntilBell = 705 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
@@ -413,7 +414,7 @@ public class AppsPageFragment extends Fragment {
 		else if ((mHour == 12 && mMinute >= 25)
 				|| (mHour == 13 && mMinute < 10)) {
 			mTimeUntilBell = 790 - mTotalTime;
-			mLesson = "Lunchbreak";
+			mLesson = getResources().getString(R.string.lunchbreak);
 			isThereClass = true;
 		}
 
@@ -425,7 +426,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if (mHour == 13 && mMinute >= 50) {
 			mTimeUntilBell = 840 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
@@ -437,7 +438,7 @@ public class AppsPageFragment extends Fragment {
 
 		else if (mHour == 14 && mMinute >= 40 && mMinute < 50) {
 			mTimeUntilBell = 890 - mTotalTime;
-			mLesson = "Breaktime";
+			mLesson = getResources().getString(R.string.breaktime);
 			isThereClass = true;
 		}
 
