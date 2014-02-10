@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
-                    android:text="NAME: "
+                    android:text="@string/name_"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#eeeeee" />
 
@@ -70,6 +70,8 @@
                     android:id="@+id/app_drawer_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="5"
+                    android:paddingLeft="5dp"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
                     android:text=""
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
-                    android:text="CLASS: "
+                    android:text="@string/class_"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#eeeeee" />
 
@@ -94,6 +96,7 @@
                     android:id="@+id/app_drawer_user_class"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
                     android:text=""
@@ -111,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
-                    android:text="ID: "
+                    android:text="@string/id_"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#eeeeee" />
 
@@ -119,6 +122,7 @@
                     android:id="@+id/app_drawer_user_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
                     android:shadowColor="#80000000"
                     android:shadowRadius="3"
                     android:text=""
@@ -155,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Books"
+                android:text="@string/books"
                 android:textColor="#7a7a7a" />
         </RelativeLayout>
 
@@ -181,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Notebooks"
+                android:text="@string/notebooks"
                 android:textColor="#7a7a7a" />
         </RelativeLayout>
 
@@ -207,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Drawings"
+                android:text="@string/drawings"
                 android:textColor="#7a7a7a" />
         </RelativeLayout>
     </RelativeLayout>
@@ -228,7 +232,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Friday"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#7d7d7d" />
 
@@ -239,7 +242,6 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/app_lesson_widget_day_of_the_week"
             android:layout_marginLeft="20dp"
-            android:text="Japanese"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#5a5a5a" />
 
@@ -275,7 +277,6 @@
                     android:id="@+id/app_lesson_widget_remaining_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="REMAINING TIME"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#7d7d7d" />
             </LinearLayout>
@@ -291,7 +292,6 @@
                     android:id="@+id/app_lesson_widget_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="30"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#7d7d7d" />
 
@@ -299,7 +299,6 @@
                     android:id="@+id/app_lesson_widget_remaining_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MINUTES"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#7d7d7d"
                     android:textSize="6sp" />

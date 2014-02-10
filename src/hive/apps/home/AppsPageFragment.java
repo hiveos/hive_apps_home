@@ -231,30 +231,15 @@ public class AppsPageFragment extends Fragment {
 		if (mUserAvatarFile.exists() && mUserInfoFile.exists()) {
 			mDrawerAvatar.setImageBitmap(mUserAvatar);
 			blurAvatar(mUserAvatarPath);
-			mDrawerUserName
-					.setText(" "
-							+ mUserInformation
-									.get(1)
-									.substring(
-											mUserInformation.get(1)
-													.indexOf("=") + 1)
-									.toUpperCase());
-			mDrawerUserId
-					.setText(" "
-							+ mUserInformation
-									.get(2)
-									.substring(
-											mUserInformation.get(2)
-													.indexOf("=") + 1)
-									.toUpperCase());
-			mDrawerUserClass
-					.setText(" "
-							+ mUserInformation
-									.get(3)
-									.substring(
-											mUserInformation.get(3)
-													.indexOf("=") + 1)
-									.toUpperCase());
+			mDrawerUserName.setText(mUserInformation.get(1)
+					.substring(mUserInformation.get(1).indexOf("=") + 1)
+					.toUpperCase());
+			mDrawerUserId.setText(mUserInformation.get(2)
+					.substring(mUserInformation.get(2).indexOf("=") + 1)
+					.toUpperCase());
+			mDrawerUserClass.setText(mUserInformation.get(3)
+					.substring(mUserInformation.get(3).indexOf("=") + 1)
+					.toUpperCase());
 
 		} else {
 			mDrawerAvatar.setImageResource(R.drawable.avatar_default_4);
