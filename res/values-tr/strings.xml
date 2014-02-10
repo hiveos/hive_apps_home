@@ -8,9 +8,6 @@
     <string name="books">Kitaplar</string>
     <string name="settings">Ayarlar</string>
     <string name="wallpaper">Arka Plan Resmi</string>
-    <string name="no_connection">HIVE sunucularına bağlanılamıyor</string>
-    <string name="no_connection_info">\nYardım almak için lütfen yöneticilerinizle irtibata geçin</string>
-    <string name="wireless_settings">Kablosuz Ayarları</string>
     <string name="show_card">Kartını Göster</string>
     <string name="show_card_info">\nGiriş yapmak için kartını cihazın arka tarafına yakın tut</string>
     <string name="error_nfc_disabled">NFC kapalı</string>
@@ -27,5 +24,6 @@
     <string name="id_">ID: </string>
     <string name="remaining_time">KALAN ZAMAN</string>
     <string name="timetable">Ders Programı</string>
-
+    <string name="error_wrong_card">Bu kart hiçbir öğrenciye kayıtlı değil. Lütfen geçerli bir kart ile deneyin.</string>
+    
 </resources>
