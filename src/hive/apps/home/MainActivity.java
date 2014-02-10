@@ -20,16 +20,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 
 @SuppressLint("DefaultLocale")
 public class MainActivity extends FragmentActivity {
@@ -68,8 +64,10 @@ public class MainActivity extends FragmentActivity {
 		if (isNetworkAvailable()) {
 
 		} else {
-			Intent i = new Intent(this, NoNetworkActivity.class);
-			startActivity(i);
+			Intent mNoNetworkIntent = new Intent();
+			mNoNetworkIntent.setAction("hive.action.General");
+			mNoNetworkIntent.putExtra("do", "ERROR_NO_CONNECTION");
+			sendBroadcast(mNoNetworkIntent);
 		}
 
 		File log = new File(Environment.getExternalStorageDirectory()

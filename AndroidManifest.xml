@@ -56,11 +56,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".NoNetworkActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/HomescreenTheme" >
-        </activity>
 
         <receiver android:name=".ScreenReceiver" >
             <intent-filter>

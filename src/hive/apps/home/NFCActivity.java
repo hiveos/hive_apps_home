@@ -139,8 +139,10 @@ public class NFCActivity extends Activity {
 				mNfcSettings.setVisibility(View.GONE);
 			}
 		} else {
-			Intent i = new Intent(this, NoNetworkActivity.class);
-			startActivity(i);
+			Intent mNoNetworkIntent = new Intent();
+			mNoNetworkIntent.setAction("hive.action.General");
+			mNoNetworkIntent.putExtra("do", "ERROR_NO_CONNECTION");
+			sendBroadcast(mNoNetworkIntent);
 		}
 	}
 
@@ -165,8 +167,10 @@ public class NFCActivity extends Activity {
 				mNfcSettings.setVisibility(View.GONE);
 			}
 		} else {
-			Intent i = new Intent(this, NoNetworkActivity.class);
-			startActivity(i);
+			Intent mNoNetworkIntent = new Intent();
+			mNoNetworkIntent.setAction("hive.action.General");
+			mNoNetworkIntent.putExtra("do", "ERROR_NO_CONNECTION");
+			sendBroadcast(mNoNetworkIntent);
 		}
 
 		mNfcSettings.setOnClickListener(new View.OnClickListener() {
