@@ -277,6 +277,7 @@
                     android:id="@+id/app_lesson_widget_remaining_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/remaining_time"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#7d7d7d" />
             </LinearLayout>
@@ -311,6 +312,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:visibility="gone" >

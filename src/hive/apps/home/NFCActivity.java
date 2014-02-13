@@ -400,8 +400,9 @@ public class NFCActivity extends Activity {
 			try {
 
 				FileWriter fw = new FileWriter(informationFile);
-				fw.append(image + "\n" + name + "\n" + ssid + "\n" + sclass
-						+ "\n" + unique + "\n" + admin);
+				fw.append(name.substring(name.indexOf("name=") +5) + "\n"
+						+ name + "\n" + ssid + "\n" + sclass + "\n" + unique
+						+ "\n" + admin);
 				fw.flush();
 				fw.close();
 				fw = null;
