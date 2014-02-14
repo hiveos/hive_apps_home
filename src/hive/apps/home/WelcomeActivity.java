@@ -122,8 +122,10 @@ public class WelcomeActivity extends Activity {
 			mDrawerAvatar.setImageBitmap(mUserAvatar);
 			blurBackground(mUserAvatarPath);
 			mDrawerUserName.setText(mUserInformation.get(0).toUpperCase());
-			mDrawerUserId.setText(mUserInformation.get(1).toUpperCase());
-			mDrawerUserClass.setText(mUserInformation.get(2));
+			mDrawerUserId.setText(mUserInformation.get(1).toUpperCase()
+					.substring(mUserInformation.get(1).indexOf("=") + 1));
+			mDrawerUserClass.setText(mUserInformation.get(2).substring(
+					mUserInformation.get(1).indexOf("=") + 2));
 
 		} else {
 			mDrawerAvatar.setImageResource(R.drawable.avatar_default_4);
