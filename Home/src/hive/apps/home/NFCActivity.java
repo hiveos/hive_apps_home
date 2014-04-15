@@ -331,7 +331,7 @@ public class NFCActivity extends Activity {
 
 		protected String doInBackground(String... receivedUniquesId) {
 			String uniqueId = receivedUniquesId[0];
-			String LoginUrl = "http://hive.bluedream.info/api/"
+			String LoginUrl = "http://hive.bluedream.info/cp/api/"
 					+ uniqueId.toString() + "/login";
 
 			try {
